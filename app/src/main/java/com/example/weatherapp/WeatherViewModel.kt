@@ -22,6 +22,9 @@ class WeatherViewModel : ViewModel(){
     fun getData(city: String){
        viewModelScope.launch {
            try{
+
+               _weatherResult.value = NetworkResponse.Loading
+
                val response = weatherApi.getWeather(apiKey = Constant.apiKey, city = city)
                if(response.isSuccessful){
                    //Log.d("Response", response.body().toString())
